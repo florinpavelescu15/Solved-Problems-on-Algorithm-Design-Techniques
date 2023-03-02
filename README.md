@@ -51,7 +51,7 @@ dupa greutatea in litera curenta (cuvintele cu greutate mare vor da o dominanta 
 am concatenat, pe rand, cuvinte pana cand `S < 0` sau se termina sirul de cuvinte (*metoda Greedy*).
 Am ales maximul valrilor calculate pentru fiecare dintre literele alfabetului.
 
-Complexitate temporala: `O(L) + O(N*logN) = O(L + N*logN)`.
+Complexitate temporala: `O(L) + O(N * log N) = O(L + N * log N)`.
 
 Complexitate spatiala: `O(L)`.
 
@@ -84,7 +84,7 @@ Complexitate spatiala: `O(max_target) + O(n * k)`.
 # Crypto
 Am pornit de la o implementare recursiva a determinarii numarului de aparitii ale unui subsir `S`
 intr-un sir `K`, fara a tine cont de eventualele `'?'` din `K`, pe care am adaptat-o ulterior:
-```
+```pseudocod
 n = K.len
 m = S.len
 ┌aparitii (K, S, n, m)
