@@ -25,6 +25,7 @@ Reguli de rescalare:
 - Daca `(x, y)` de afla in cadranul 2, coordonatele devin `(x, y - N / 2)`.
 - Daca `(x, y)` de afla in cadranul 3, coordonatele devin `(x - N / 2, y)`.
 - Daca `(x, y)` de afla in cadranul 4, coordonatele devin `(x - N / 2, y - N / 2)`.
+
 Complexitate temporala: `T(n) = T(n / 2) + O(1)`, conform *teoremei Master*, `T(n) = O(log n)`
 Complexitate spatiala: `O(1)`
 
