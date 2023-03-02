@@ -26,12 +26,12 @@ Reguli de rescalare:
 - Daca `(x, y)` de afla in cadranul 3, coordonatele devin `(x - N / 2, y)`.
 - Daca `(x, y)` de afla in cadranul 4, coordonatele devin `(x - N / 2, y - N / 2)`.
 
-Complexitate temporala: `T(n) = T(n / 2) + O(1)`, conform *teoremei Master*, `T(n) = O(log n)`
+Complexitate temporala: `T(n) = T(n / 2) + O(1)`, conform *teoremei Master*, `T(n) = O(log n)`.
 
-Complexitate spatiala: `O(1)`
+Complexitate spatiala: `O(1)`.
 
 # Statistics
-Daca din cele `N` cuvinte din vectorul words aleg `k` cuvinte, `words[i_1]`, `words[i_2], ..., words[i_k]`,
+Daca din cele `N` cuvinte din vectorul words aleg `k` cuvinte, `words[i_1], words[i_2], ..., words[i_k]`,
 si daca notez cu `freq[j]` numarul de aparitii ale literei `ch` in cuvantul
 `words[i_j]` si `len[j]` lungimea cuvantului `words[i_j]`, pentru `j = 1..k`, atunci conditia
 ca litera `ch` sa fie dominanta se rescrie astfel 
@@ -51,9 +51,9 @@ dupa greutatea in litera curenta (cuvintele cu greutate mare vor da o dominanta 
 am concatenat, pe rand, cuvinte pana cand `S < 0` sau se termina sirul de cuvinte (*metoda Greedy*).
 Am ales maximul valrilor calculate pentru fiecare dintre literele alfabetului.
 
-Complexitate temporala: `O(L) + O(N*logN) = O(L + N*logN)`
+Complexitate temporala: `O(L) + O(N*logN) = O(L + N*logN)`.
 
-Complexitate spatiala: `O(L)`
+Complexitate spatiala: `O(L)`.
 
 # Prinel
 Pentru a calcula numarul minim de pasi necesari pentru a ajunge la un target am folosit 
@@ -77,13 +77,13 @@ costs[i] (numarul minim de pasi necesari pentru a obtine target[i]) <-> w[i] (gr
 p[i] (punctajul aferent targetului targets[i])                      <-> p[i] (pretul obiectului i)
 ```
 
-Complexitate temporala: `O(max_target * sqrt(max_target)) + O(n * k) = O(max_target * sqrt(max_target) + n * k)`
+Complexitate temporala: `O(max_target * sqrt(max_target)) + O(n * k) = O(max_target * sqrt(max_target) + n * k)`.
 
-Complexitate spatiala: `O(max_target) + O(n * k)`
+Complexitate spatiala: `O(max_target) + O(n * k)`.
 
 # Crypto
 Am pornit de la o implementare recursiva a determinarii numarului de aparitii ale unui subsir `S`
-intr-un sir `K`, fara a tine cont de eventualele `'?'` din `K`, pe care am adaptat-o ulterior.
+intr-un sir `K`, fara a tine cont de eventualele `'?'` din `K`, pe care am adaptat-o ulterior:
 ```
 n = K.len
 m = S.len
@@ -108,7 +108,7 @@ m = S.len
 └■
 ```
 
-Am flosit programare dinamica, `dp[i][j]` = numarul de aparitii ale subsirului format din primele 
+Am flosit *programare dinamica*, `dp[i][j]` = numarul de aparitii ale subsirului format din primele 
 `j` litere ale subsirului `S` in sirul format din primele `i` caractere ale lui `K`.
 In plus fata de algoritmul de mai sus, tin cont ca
 - pentru fiecare dintre sirurile formate din primele `i - 1` elemente din `K` un semn de intrebare pe 
@@ -123,6 +123,6 @@ pozitia i genereaza r siruri cu i elemente, iar orice alt caracter nu schimba cu
     ```
     unde `r` este numarul de caractere distincte din `S`.
     
-Complexitate temporala: `O(N * L)`
+Complexitate temporala: `O(N * L)`.
 
-Complexitate spatiala: `O(N * L)`
+Complexitate spatiala: `O(N * L)`.
