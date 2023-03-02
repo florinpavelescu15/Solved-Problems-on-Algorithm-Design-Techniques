@@ -27,9 +27,10 @@ Reguli de rescalare:
 - Daca `(x, y)` de afla in cadranul 4, coordonatele devin `(x - N / 2, y - N / 2)`.
 
 Complexitate temporala: `T(n) = T(n / 2) + O(1)`, conform *teoremei Master*, `T(n) = O(log n)`
+
 Complexitate spatiala: `O(1)`
 
-## Statistics
+# Statistics
 Daca din cele `N` cuvinte din vectorul words aleg `k` cuvinte, `words[i_1]`, `words[i_2], ..., words[i_k]`,
 si daca notez cu `freq[j]` numarul de aparitii ale literei `ch` in cuvantul
 `words[i_j]` si `len[j]` lungimea cuvantului `words[i_j]`, pentru `j = 1..k`, atunci conditia
@@ -49,33 +50,40 @@ se respecta conditia de mai sus. Asadar, am parcurs fiecare litera, am sortat ve
 dupa greutatea in litera curenta (cuvintele cu greutate mare vor da o dominanta mai mare) si
 am concatenat, pe rand, cuvinte pana cand `S < 0` sau se termina sirul de cuvinte (*metoda Greedy*).
 Am ales maximul valrilor calculate pentru fiecare dintre literele alfabetului.
+
 Complexitate temporala: `O(L) + O(N*logN) = O(L + N*logN)`
+
 Complexitate spatiala: `O(L)`
 
-3. Prinel
+# Prinel
 Pentru a calcula numarul minim de pasi necesari pentru a ajunge la un target am folosit 
-programarea dinamica, cu dp[i] = numarul minim de pasi necesari pentru a obtine 
-targetul i, pentru i = 1..target.
-- Fie x un numar natural nenul si d un divizor al sau. Evident, d este si divizor al lui x + d. (1)
-- Fie i un numar natural nenul si d un divizor al sau, d != i. Evident, d este si divizor al lui i - d. (2)
-Consider ca am determinat toate valorile dp[1], dp[2], ..., dp[i - 1]. Daca x + d = i 
-(d este divizor al lui x), rezulta ca mai este un pas de la x pana la i, deci dp[i] = dp[x] + 1, 
-deci dp[i] = dp[i - d] + 1 si conform (1) si (2) d este orice divizor al lui i, d != i. 
-Asadar, cum dp[i - 1], dp[i - 2], ..., dp[1] au fost calculate optim, aleg dp[i] = min(dp[i - d] + 1),
-unde d este orice divizor al lui i, d != i. 
-Evident, cazul de baza este dp[1] = 0 (nu am nevoie de niciun pas ca sa ajung de la 1 la 1).
-Pentru problema din enunt calculez dp[i] pentru i = 1..target_maxim, astfel voi obtine 
+*programarea dinamica*, cu `dp[i]` = numarul minim de pasi necesari pentru a obtine 
+targetul `i`, pentru `i = 1..target`.
+- Fie `x` un numar natural nenul si `d` un divizor al sau. Evident, `d` este si divizor al lui `x + d`. `(1)`
+- Fie `i` un numar natural nenul si `d` un divizor al sau, `d != i`. Evident, `d` este si divizor al lui `i - d`. `(2)`
+
+Consider ca am determinat toate valorile `dp[1], dp[2], ..., dp[i - 1]`. Daca `x + d = i` 
+(`d` este divizor al lui `x`), rezulta ca mai este un pas de la `x` pana la `i`, deci `dp[i] = dp[x] + 1`, 
+deci `dp[i] = dp[i - d] + 1` si conform `(1)` si `(2)` `d` este orice divizor al lui `i, d != i`. 
+Asadar, cum `dp[i - 1], dp[i - 2], ..., dp[1]` au fost calculate optim, aleg `dp[i] = min(dp[i - d] + 1)`,
+unde `d` este orice divizor al lui `i, d != i`. 
+Evident, cazul de baza este `dp[1] = 0` (nu am nevoie de niciun pas ca sa ajung de la 1 la 1).
+Pentru problema din enunt calculez `dp[i]` pentru `i = 1..target_maxim`, astfel voi obtine 
 numarul minim de pasi pentru toate targeturile.
 Cu targeturile calculate, problema se reduce la problema rucsacului cu urmatoarele identificari:
+```
 K (numarul total de pasi)                                           <-> W (greutatea totala a rucsacului)
 costs[i] (numarul minim de pasi necesari pentru a obtine target[i]) <-> w[i] (greutatea obiectului i)
 p[i] (punctajul aferent targetului targets[i])                      <-> p[i] (pretul obiectului i)
-Complexitate temporala: O(max_target * sqrt(max_target)) + O(n * k) = O(max_target * sqrt(max_target) + n * k)
-Complexitate spatiala: O(max_target) + O(n * k)
+```
 
-4. Crypto
-Am pornit de la o implementare recursiva a determinarii numarului de aparitii ale unui subsir S
-intr-un sir K, fara a tine cont de eventualele '?' din K, pe care am adaptat-o ulterior.
+Complexitate temporala: `O(max_target * sqrt(max_target)) + O(n * k) = O(max_target * sqrt(max_target) + n * k)`
+
+Complexitate spatiala: `O(max_target) + O(n * k)`
+
+# Crypto
+Am pornit de la o implementare recursiva a determinarii numarului de aparitii ale unui subsir `S`
+intr-un sir `K`, fara a tine cont de eventualele `'?'` din `K`, pe care am adaptat-o ulterior.
 ```
 n = K.len
 m = S.len
@@ -100,16 +108,20 @@ m = S.len
 └■
 ```
 
-Am flosit programare dinamica, dp[i][j] = numarul de aparitii ale subsirului format din primele 
-j litere ale subsirului S in sirul format din primele i caractere ale lui K.
+Am flosit programare dinamica, `dp[i][j]` = numarul de aparitii ale subsirului format din primele 
+`j` litere ale subsirului `S` in sirul format din primele `i` caractere ale lui `K`.
 In plus fata de algoritmul de mai sus, tin cont ca
-- pentru fiecare dintre sirurile formate din primele i - 1 elemente din K un semn de intrebare pe 
+- pentru fiecare dintre sirurile formate din primele `i - 1` elemente din `K` un semn de intrebare pe 
 pozitia i genereaza r siruri cu i elemente, iar orice alt caracter nu schimba cu nimic numarul sirurilor
-- daca K[i - 1] != '?', poate fi orice caracter din S, inclusiv S[j - 1]
-    - deci un caz in care K[i - 1] = S[j - 1] => dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]
-    - alte r - 1 cazuri in care K[i - 1] != S[j - 1] => dp[i][j] = dp[i - 1][j]
-    - insumand obtin dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + (r - 1) * dp[i - 1][j]
-                               = dp[i - 1][j - 1] + r * dp[i - 1][j]
-    unde r este numarul de caractere distincte din S
-Complexitate temporala: O(N * L)
-Complexitate spatiala: O(N * L)
+- daca `K[i - 1] != '?'`, poate fi orice caracter din `S`, inclusiv `S[j - 1]`
+    - deci un caz in care `K[i - 1] = S[j - 1] => dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]`
+    - alte `r - 1` cazuri in care `K[i - 1] != S[j - 1] => dp[i][j] = dp[i - 1][j]`
+    - insumand obtin 
+    ```dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + (r - 1) * dp[i - 1][j]
+                = dp[i - 1][j - 1] + r * dp[i - 1][j]
+    ```
+    unde `r` este numarul de caractere distincte din `S`.
+    
+Complexitate temporala: `O(N * L)`
+
+Complexitate spatiala: `O(N * L)`
