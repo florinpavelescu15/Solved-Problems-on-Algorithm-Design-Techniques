@@ -117,8 +117,9 @@ pozitia i genereaza r siruri cu i elemente, iar orice alt caracter nu schimba cu
     - deci un caz in care `K[i - 1] = S[j - 1] => dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]`
     - alte `r - 1` cazuri in care `K[i - 1] != S[j - 1] => dp[i][j] = dp[i - 1][j]`
     - insumand obtin 
-    ```dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + (r - 1) * dp[i - 1][j]
-                = dp[i - 1][j - 1] + r * dp[i - 1][j]
+    ```
+    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + (r - 1) * dp[i - 1][j]
+             = dp[i - 1][j - 1] + r * dp[i - 1][j]
     ```
     unde `r` este numarul de caractere distincte din `S`.
     
