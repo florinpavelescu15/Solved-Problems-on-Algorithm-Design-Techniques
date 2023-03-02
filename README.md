@@ -70,7 +70,7 @@ Complexitate spatiala: O(max_target) + O(n * k)
 4. Crypto
 Am pornit de la o implementare recursiva a determinarii numarului de aparitii ale unui subsir S
 intr-un sir K, fara a tine cont de eventualele '?' din K, pe care am adaptat-o ulterior.
----------------------------------------------------------------------------
+```
 n = K.len
 m = S.len
 ┌aparitii (K, S, n, m)
@@ -92,7 +92,7 @@ m = S.len
 |    |    aparritii(K, S, n - 1, m)
 |    └■
 └■
----------------------------------------------------------------------------
+```
 
 Am flosit programare dinamica, dp[i][j] = numarul de aparitii ale subsirului format din primele 
 j litere ale subsirului S in sirul format din primele i caractere ale lui K.
